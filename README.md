@@ -5,7 +5,7 @@ You May Directly Add The Extension To Your Chrome Browser Via `chrome://extensio
 
 The Program Currently Has A Good Portion Of Subjects Added To The Database, However If You Feel A Subject is missing, You may update it in `js` >> `content.js` in a JSON `Key:Value` Format.<br />
 
-#Calculation Method:<br />
+# Calculation Method: <br />
 
 During each semester, the list of courses registered and the grades scored in each course are used to compute the Grade Point Average (GPA). GPA is the ratio of the sum of the products of the number of credits of courses registered and the grade points corresponding to the grades scored in those courses, taken for all the courses, to the sum of the number of credits of all the courses in the semester.
 
@@ -18,7 +18,7 @@ CGPA will be calculated in a similar manner, considering all the courses enrolle
 
 The credits earned through one / two credit courses shall not be considered for calculating GPA and CGPA.
 
-#Grades:
+# Grades:
 Grade  | Points
 ------ | -------------
 O      | 10
