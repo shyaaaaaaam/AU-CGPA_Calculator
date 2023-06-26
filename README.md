@@ -4,6 +4,7 @@ This is a JavaScript programmed Google Extension to calculate CGPA Directly From
 You May Directly Add The Extension To Your Chrome Browser Via `chrome://extensions/` >> `Load Unpacked` >> `Select AU-CGPA-Calculator`<br /><br />
 
 The Program Currently Has A Good Portion Of Subjects Added To The Database, However If You Feel A Subject is missing, You may update it in `js` >> `content.js` in a JSON `Key:Value` Format.<br />
+- - - -
 
 # Calculation Method: <br />
 
@@ -17,6 +18,7 @@ Where Ci - is the Credits assigned to the course
 CGPA will be calculated in a similar manner, considering all the courses enrolled from first semester. "RA", "SA" and "U" grades will be excluded for calculating GPA and CGPA.
 
 The credits earned through one / two credit courses shall not be considered for calculating GPA and CGPA.
+- - - -
 
 # Grades:
 Grade  | Points
