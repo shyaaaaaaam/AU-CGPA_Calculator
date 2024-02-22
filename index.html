@@ -1,0 +1,194 @@
+<html>
+    <head>
+        <style>
+            body {
+            font-family: Arial;
+            width: 650px;
+            height: fit-content;
+            background-color: firebrick;
+            }
+
+            .tab {
+            overflow: hidden;
+            width: 100%;
+            border: 1px solid goldenrod;
+            background-color: white;
+            }
+
+            .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            width: calc(100% / 4);
+            box-sizing: border-box;
+            }
+
+            .tab button:hover {
+            background-color: #9b1015;
+            }
+
+            .tab button.active {
+            background-color: firebrick;
+            }
+
+            .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid inherit;
+            border-top: none;
+            }
+
+            #storesgpa {
+            text-align: center;
+            background-color: white;
+            border: none;
+            color: firebrick;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin: 0 auto;
+            transition: background-color 0.3s;
+            }
+
+            #storesgpa:hover {
+            background-color: darkred;
+            }
+
+            #acoesemsbutton {
+            background-color: white;
+            border: none; color: firebrick;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 15px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin: 0 auto;
+            transition: background-color 0.3s;
+            }
+
+            #acoesemsbutton:hover {
+            background-color: red;
+            }
+
+            .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 25px;
+            }
+
+            .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            }
+
+            .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            .slider:before {
+            position: absolute;
+            content: "";
+            height: 21px;
+            width: 21px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+            }
+
+            input:checked + .slider {
+            background-color: rgb(109, 84, 3);
+            }
+
+            input:focus + .slider {
+            box-shadow: 0 0 1px rgb(109, 84, 3);
+            }
+
+            input:checked + .slider:before {
+            left: calc(100% - 23px);
+            }
+
+            .slider.round {
+            border-radius: 25px;
+            }
+
+            .slider.round:before {
+            border-radius: 25px;
+            }
+        </style>
+    </head>
+
+    <script src="script.js"></script>
+    
+    <body>
+        <!--<h1 style="text-align: center; margin: 10px;">ACOE SGPA-CGPA Calculator</h1>-->
+        <div class="tab">
+            <button class="tablinks" id="sgpa-button">SGPA</button>
+            <button class="tablinks" id="cgpa-button">CGPA</button>
+            <button class="tablinks" id="options-button">Options</button>
+            <button class="tablinks" id="about-button">About</button>
+        </div>            
+
+        <div id="sgpa" class="tabcontent">
+            <div id="sgpa-main">
+            
+            </div>
+        </div>
+        
+        <div id="cgpa" class="tabcontent">
+            <div id="cgpa-main">
+
+            </div>
+        </div>
+
+        <div id="options" class="tabcontent">
+            <div id="options-main">
+                <h3 style='color: white; font-size: x-large;' id='optionstext'>Options:</h3>
+                <label style="color: white; font-size: medium;">Decimal Precision:</label>
+                <input style="margin-bottom: 10px;" type="number" id="numberPicker1" name="numberPicker1" min="1" max="5" value="3" disabled>
+                <br>
+                <label style="color: white; font-size: medium;">Count U/RA/SA:</label>
+                <label class="switch">
+                    <input style="margin-bottom: 10px;" type="checkbox" id="omitfail1">
+                    <span class="slider round"></span>
+                </label>
+                <br>
+                <hr>
+                <label style="font-size: medium; text-align: left; color: white;" id="alertmessage"></label>
+                <label style="color: white; font-size: medium;">Data:</label>
+                <br>
+                <textarea id="creditsdata" style="resize: none; margin-left: auto; margin-right: auto;" name="creditsdata" rows="30" cols="70"></textarea>
+                <br>
+            </div>
+        </div>
+        
+        <div id="about" class="tabcontent">
+            <h3 style="font-size: x-large; color: white;">Made By <a id="ghublink" href="https://github.com/shyaaaaaaam/AU-CGPA_Calculator">Shyaaaaaaaaaam</a></h3>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+    "manifest_version": 3,
+    "name": "ACOE CGPA-SGPA Calculator",
+    "description": "An Extension Developed To Aid In The Calculation Of Semester-wise Grades.",
+    "version": "1.0",
+    "action": {
+      "default_popup": "index.html",
+      "default_icon": "acoe.png"
+    },
+    "icons": {
+        "32": "images/acoe-32.png",
+        "128": "images/acoe-128.png"
+    },
+    "permissions": [ "activeTab", "storage", "tabs", "cookies", "scripting" ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "author": "Shyaam",
+    "content_security_policy": {
+        "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+    },
+    "host_permissions": [
+      "https://*/*"
+    ]
+}
