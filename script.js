@@ -523,14 +523,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("namec").innerHTML = 'Name: ' + data[1];
                         document.getElementById("branchc").innerHTML = 'Branch: ' + data[2];
                         document.getElementById("campusc").innerHTML = 'Campus: ' + data[3];
-                        document.getElementById("semesternumberc").innerHTML = 'Semester: ' + data[4];
                     }).catch((error) => {
                         console.error(error);
                         document.getElementById("rollnumberc").innerHTML = 'Roll Number: Error';
                         document.getElementById("namec").innerHTML = 'Name: Error';
                         document.getElementById("branchc").innerHTML = 'Branch: Error';
                         document.getElementById("campusc").innerHTML = 'Campus: Error';
-                        document.getElementById("semesternumberc").innerHTML = 'Semester: Error';
                     });
                     var table = document.getElementById('cgpatable');
                     for (var i = 1; i < 9; i++) {
