@@ -42,3 +42,4 @@ RA     | 0 Re-Appear
 <img width="341" alt="image" src="https://github.com/shyaaaaaaam/AU-CGPA_Calculator/assets/66993859/6f17f22a-35f2-4c80-a700-aaa4a499400b">
 <img width="341" alt="image" src="https://github.com/shyaaaaaaam/AU-CGPA_Calculator/assets/66993859/ab915907-af1d-4056-8bd1-c04319868ef6">
 <img width="341" alt="image" src="https://github.com/shyaaaaaaam/AU-CGPA_Calculator/assets/66993859/b802afd9-3952-495a-b10f-4e81edb1add9">
+<img width="340" alt="image" src="https://github.com/shyaaaaaaam/AU-CGPA_Calculator/assets/66993859/774c19af-c2ba-43cb-ab85-8b9d5a18b142">
