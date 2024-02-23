@@ -169,7 +169,7 @@
             <div id="options-main">
                 <h3 style='color: white; font-size: x-large;' id='optionstext'>Options:</h3>
                 <label style="color: white; font-size: medium;">Decimal Precision:</label>
-                <input style="margin-bottom: 10px;" type="number" id="numberPicker1" name="numberPicker1" min="1" max="5" value="3" disabled>
+                <input style="margin-bottom: 10px;" type="number" id="numberPicker1" name="numberPicker1" min="1" max="5" value="3">
                 <br>
                 <label style="color: white; font-size: medium;">Count U/RA/SA:</label>
                 <label class="switch">
@@ -179,7 +179,14 @@
                 <br>
                 <hr>
                 <label style="font-size: medium; text-align: left; color: white;" id="alertmessage"></label>
-                <label style="color: white; font-size: medium;">Data:</label>
+                <br>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <label style="color: white; font-size: medium;" for="creditsdata">Data:</label>
+                    <div style="display: flex; align-items: center;">
+                        <label style="color: white; font-size: medium; text-align: right; margin-right: 8px;">Save Regardless Of Error:</label>
+                        <input type="checkbox" style="text-align: right;" id="checkerror" />
+                    </div>
+                </div>
                 <br>
                 <textarea id="creditsdata" style="resize: none; margin-left: auto; margin-right: auto;" name="creditsdata" rows="30" cols="70"></textarea>
                 <br>

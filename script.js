@@ -450,6 +450,17 @@ document.addEventListener("DOMContentLoaded", function () {
                                     result = 0.0;
                                 }
                                 document.getElementById('semesterfinalgrade').innerHTML = 'SGPA: ' + result;
+                                var storesgpabutton = document.getElementById("storesgpa");
+                                if (storesgpabutton) {
+                                    storesgpabutton.addEventListener("click", function () {
+                                        getuserdata().then((data) => {
+                                            setCookie(data[4], result);
+                                            document.getElementById('alert').innerHTML = 'SGPA Saved!';
+                                        }).catch((error) => {
+                                            console.error(error);
+                                        });
+                                    });
+                                }
                             }
                         }
                     });
@@ -501,8 +512,10 @@ document.addEventListener("DOMContentLoaded", function () {
     <th>GPA</th>
   </tr>
 </table>
+<hr>
+<h3 style='color: white; text-align: justfiy; font-size: medium;' id='target'>To Target <input id="targetvalue" type="number" min="0"/> You Must Get <input id="targetresult" type="text" disabled/> In The Remaining <input id="targettimeframe" type="text" disabled/> Semesters.</h3>
 <hr><br>
-<p style="text-align:center; color: white;" id="alertc">Note: Updating a Value Stores It.</p>
+<p style="text-align: center; color: white;" id="alertc">Note: Updating a Value Stores It.</p>
                     `
                     document.getElementById("cgpa-main").innerHTML = insb;
                     getuserdata().then((data) => {
@@ -520,10 +533,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("semesternumberc").innerHTML = 'Semester: Error';
                     });
                     var table = document.getElementById('cgpatable');
-                    for (var i = 1; i < 11; i++) {
+                    for (var i = 1; i < 9; i++) {
                         var newrow = table.insertRow();
                         var val = getCookie(i.toString());
-                        newrow.innerHTML = "<td>" + i.toString() + "</td><td><input type='text' value='" + val + "' /></td>";
+                        newrow.innerHTML = "<td>" + i.toString() + "</td><td><input type='number' min='0' value='" + val + "' /></td>";
                     }
                     var result = calculatecgpa();
                     document.getElementById('cgpafinalgrade').innerHTML = 'CGPA: ' + result;
@@ -537,6 +550,34 @@ document.addEventListener("DOMContentLoaded", function () {
                             var result = calculatecgpa();
                             document.getElementById('cgpafinalgrade').innerHTML = 'CGPA: ' + result;
                         }
+                    });
+                    var targetobj = document.getElementById('targetvalue');
+                    targetobj.addEventListener('input', function(event) {
+                        //targetcgpa*totalsem-sumofcurrent/remainingsem
+                        var targetvalue = parseFloat(targetobj.value);
+                        var sgpas = [];
+                        for (var i = 1; i < 9; i++) {
+                            var sgpa = getCookie(i.toString());
+                            if ((sgpa == '') || (sgpa == null)) {
+
+                            } else {
+                                sgpas.push(parseFloat(sgpa));
+                            }
+                        }
+                        var calculate = (((targetvalue * 8) - (sgpas.reduce((a, b) => a + b, 0))) / (8 - sgpas.length)).toPrecision(parseInt(getCookie('precision')));
+                        if (sgpas.length == 8) {
+                            document.getElementById('targetresult').value = NaN;
+                            document.getElementById('targettimeframe').value = NaN;
+                        } else {
+                            if (calculate > 10.0) {
+                                document.getElementById('targetresult').value = calculate;
+                                document.getElementById('targettimeframe').value = (8 - sgpas.length);
+                            } else {
+                                document.getElementById('targetresult').value = calculate;
+                                document.getElementById('targettimeframe').value = (8 - sgpas.length);
+                            }
+                        }
+                        
                     });
                 } else if (currentWebsite == outersite) {
                     document.getElementById("cgpa-main").innerHTML = "<h3 style='text-align: center; font-size:x-large; color: white;'>Please Log In > Attendance & Marks!</h3><br><hr>";
@@ -618,8 +659,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         setCookie('creditsdata', document.getElementById('creditsdata').value);
                         document.getElementById('alertmessage').innerHTML = 'Success: Data Saved!';
                     } catch {
-                        //setCookie('creditsdata', document.getElementById('creditsdata').value);
-                        document.getElementById('alertmessage').innerHTML = 'Alert: INVALID JSON DATA! DATA NOT SAVED!';
+                        if (document.getElementById('checkerror').checked) {
+                            setCookie('creditsdata', document.getElementById('creditsdata').value);
+                            document.getElementById('alertmessage').innerHTML = 'Alert: INVALID JSON DATA! DATA IS SAVED!';
+                        } else {
+                            document.getElementById('alertmessage').innerHTML = 'Alert: INVALID JSON DATA! DATA NOT SAVED!';
+                        }
                     }
                 })
             }
