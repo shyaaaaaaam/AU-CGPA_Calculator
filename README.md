@@ -19,8 +19,25 @@ Where Ci - is the Credits assigned to the course
  - n : is number of all Courses successfully cleared during the particular semester in the case of GPA and during all the semesters in the case of CGPA.
 CGPA will be calculated in a similar manner, considering all the courses enrolled from first semester. "RA", "SA" and "U" grades will be excluded for calculating GPA and CGPA.
 
-# CGPA
+# Weighted CGPA
+The “overall” GPA (often called CGPA) isn’t the simple arithmetic mean of each semester’s SGPA. It’s a credit-weighted average:
+![image](https://github.com/user-attachments/assets/124f2888-c35b-42b5-acc2-0e6036fd5ada)
 
+Because different semesters usually carry different credit loads, the semester with more credits pulls the CGPA closer to its own SGPA.
+
+# Target CGPA
+
+| Symbol | What it is                                          | How to get it                                                   |
+| ------ | --------------------------------------------------- | --------------------------------------------------------------- |
+| Gc     | **Current CGPA**                                    | Already Calculated By Extension                                 |
+| Gt     | **Target CGPA**                                     | -                                                               |
+| Cc     | **Total credits completed so far**                  | Add Up The Credits For The Completed Semesters                  |
+| Cr     | **Credits Remaining Upto Graduation**               | Add Up The Credits For The Remaining Semesters                  |
+
+Quality Points You Are Targetting (Qt) = Gt * (Cc + Cr)
+Quality Points So Far (Qc) = Gc * Cc
+Quality Points Needed To Earn (Qr) = Qt - Qc
+Average GPA Required In The Remaining Semesters (Gr) = Qr / Cr
 - - - -
 
 # Grades:
