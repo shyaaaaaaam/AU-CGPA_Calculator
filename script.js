@@ -31,6 +31,29 @@ function setCookie(cname, cvalue, exdays) {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function clearCookies() {
+    setCookie('1', '');
+    setCookie('2', '');
+    setCookie('3', '');
+    setCookie('4', '');
+    setCookie('5', '');
+    setCookie('6', '');
+    setCookie('7', '');
+    setCookie('8', '');
+    setCookie('9', '');
+    setCookie('10', '');
+    setCookie('1c', '');
+    setCookie('2c', '');
+    setCookie('3c', '');
+    setCookie('4c', '');
+    setCookie('5c', '');
+    setCookie('6c', '');
+    setCookie('7c', '');
+    setCookie('8c', '');
+    setCookie('9c', '');
+    setCookie('10c', '');
+}
+
 function checkcookie() {
     if ((getCookie('omitfail') == '') || (getCookie('omitfail') == null)) {
         setCookie('omitfail', 'false');
@@ -545,6 +568,8 @@ document.addEventListener("DOMContentLoaded", function () {
     <th>Credits</th>
   </tr>
 </table>
+<br>
+<button id="clearcgpa">Clear CGPA</button>
 <hr>
 <h3 style='color: white; text-align: justfiy; font-size: medium;' id='target'>To Target <input id="targetvalue" type="number" min="0"/> You Must Get <input id="targetresult" type="text" disabled/> In The Remaining <input id="targettimeframe" type="text" disabled/> Semesters.</h3>
 <hr><br>
@@ -590,6 +615,33 @@ document.addEventListener("DOMContentLoaded", function () {
                             document.getElementById('cgpafinalgrade').innerHTML = 'CGPA: ' + result;
                         }
                     });
+                    var clearcgpabutton = document.getElementById("clearcgpa");
+                    if (clearcgpabutton) {
+                        clearcgpabutton.addEventListener("click", function () {
+                            clearCookies();
+                            const table = document.getElementById('cgpatable');
+                            if (!table) return;
+                            for (let r = 1; r < table.rows.length; r++) {
+                                const row = table.rows[r];
+                                const semNumber = row.cells[0].textContent.trim();
+                                const gpaCell = row.cells[1];
+                                const gpaInput = gpaCell.querySelector('input');
+                                if (gpaInput) {
+                                    gpaInput.value = '';
+                                } else {
+                                    gpaCell.textContent = '';
+                                }
+
+                                const creditCell  = row.cells[2];
+                                const creditInput = creditCell.querySelector('input');
+                                if (creditInput) {
+                                    creditInput.value = '';
+                                } else {
+                                    creditCell.textContent = '';
+                                }
+                            }
+                        });
+                    }
                     var targetobj = document.getElementById('targetvalue');
                     targetobj.addEventListener('input', function(event) {
                         var targetvalue = parseFloat(targetobj.value);
