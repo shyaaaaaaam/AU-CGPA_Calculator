@@ -108,7 +108,7 @@ function checkcookie() {
         setCookie('creditsdata', JSON.stringify(creddata));
     }
     if ((getCookie('1') == '') || (getCookie('1') == null)) {
-        setCookie('', '');
+        setCookie('1', '');
     }
     if ((getCookie('2') == '') || (getCookie('2') == null)) {
         setCookie('2', '');
@@ -125,9 +125,6 @@ function checkcookie() {
     if ((getCookie('6') == '') || (getCookie('6') == null)) {
         setCookie('6', '');
     }
-    if ((getCookie('6') == '') || (getCookie('6') == null)) {
-        setCookie('6', '');
-    }
     if ((getCookie('7') == '') || (getCookie('7') == null)) {
         setCookie('7', '');
     }
@@ -139,6 +136,36 @@ function checkcookie() {
     }
     if ((getCookie('10') == '') || (getCookie('10') == null)) {
         setCookie('10', '');
+    }
+    if ((getCookie('1c') == '') || (getCookie('1c') == null)) {
+        setCookie('1c', '');
+    }
+    if ((getCookie('2c') == '') || (getCookie('2c') == null)) {
+        setCookie('2c', '');
+    }
+    if ((getCookie('3c') == '') || (getCookie('3c') == null)) {
+        setCookie('3c', '');
+    }
+    if ((getCookie('4c') == '') || (getCookie('4c') == null)) {
+        setCookie('4c', '');
+    }
+    if ((getCookie('5c') == '') || (getCookie('5c') == null)) {
+        setCookie('5c', '');
+    }
+    if ((getCookie('6c') == '') || (getCookie('6c') == null)) {
+        setCookie('6c', '');
+    }
+    if ((getCookie('7c') == '') || (getCookie('7c') == null)) {
+        setCookie('7c', '');
+    }
+    if ((getCookie('8c') == '') || (getCookie('8c') == null)) {
+        setCookie('8c', '');
+    }
+    if ((getCookie('9c') == '') || (getCookie('9c') == null)) {
+        setCookie('9c', '');
+    }
+    if ((getCookie('10c') == '') || (getCookie('10c') == null)) {
+        setCookie('10c', '');
     }
 }
 
@@ -247,7 +274,7 @@ function getsubjectdata() {
 
 function calculatesgpa() {
     var table = document.getElementById("sgpatable");
-    var lettertograde = {'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, '': 0};
+    var lettertograde = {'O': 10, 'S': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, '': 0};
     var omitfail = getCookie('omitfail') === "true" ? true : false;
     var result = 0.0;
     var credits = 0.0;
@@ -274,17 +301,20 @@ function calculatesgpa() {
 
 function calculatecgpa() {
     var cgpa = 0.0;
+    var totalcreds = 0;
     var count = 0;
-    for (var i = 1; i < 11; i++) {
+    for (var i = 1; i < 10; i++) {
         var gpa = getCookie(i.toString());
+        var creds = getCookie(i.toString() + 'c');
         if ((gpa == '') || (gpa == null)) {
             
         } else {
-            cgpa += parseFloat(gpa);
+            cgpa += parseFloat(gpa * creds);
+            totalcreds += parseInt(creds);
             count += 1;
         }
     }
-    cgpa = (cgpa / count).toPrecision(parseInt((getCookie('precision'))));
+    cgpa = (cgpa / totalcreds).toPrecision(parseInt((getCookie('precision'))));
     return cgpa;
 }
 
@@ -375,7 +405,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 newrow.innerHTML = "<td><input type='text' disabled value='" + subdata[1] + "' /></td><td><input type='text' disabled value='" + subdata[2] + "' /></td><td><input type='text' value='" + subdata[11] + "' /></td><td><input type='number' value='" + creditsforsubject[subdata[1]] + "' min='0' max='10' /></td>";
                             }
                         }
-                        var lettertograde = {'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, null: 0};
+                        var lettertograde = {'O': 10, 'S': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, null: 0};
                         var omitfail = getCookie('omitfail') === "true" ? true : false;
                         var result = 0.0;
                         var credits = 0.0;
@@ -407,6 +437,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             storesgpabutton.addEventListener("click", function () {
                                 getuserdata().then((data) => {
                                     setCookie(data[4], result);
+                                    setCookie(data[4].toString() + 'c', credits);
                                     document.getElementById('alert').innerHTML = 'SGPA Saved!';
                                 }).catch((error) => {
                                     console.error(error);
@@ -423,7 +454,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (inputValue == '') {
                                 // Handle empty input
                             } else {
-                                var lettertograde = {'O': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, null: 0};
+                                var lettertograde = {'O': 10, 'S': 10, 'A+': 9, 'A': 8, 'B+': 7, 'B': 6, 'C': 5, 'U': 0, 'RA': 0, 'SA': 0, '-': 0, null: 0};
                                 var omitfail = getCookie('omitfail') === "true" ? true : false;
                                 var result = 0.0;
                                 var credits = 0.0;
@@ -455,6 +486,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     storesgpabutton.addEventListener("click", function () {
                                         getuserdata().then((data) => {
                                             setCookie(data[4], result);
+                                            setCookie(data[4].toString() + 'c', credits);
                                             document.getElementById('alert').innerHTML = 'SGPA Saved!';
                                         }).catch((error) => {
                                             console.error(error);
@@ -510,12 +542,14 @@ document.addEventListener("DOMContentLoaded", function () {
   <tr>
     <th>Semester</th>
     <th>GPA</th>
+    <th>Credits</th>
   </tr>
 </table>
 <hr>
 <h3 style='color: white; text-align: justfiy; font-size: medium;' id='target'>To Target <input id="targetvalue" type="number" min="0"/> You Must Get <input id="targetresult" type="text" disabled/> In The Remaining <input id="targettimeframe" type="text" disabled/> Semesters.</h3>
 <hr><br>
 <p style="text-align: center; color: white;" id="alertc">Note: Updating a Value Stores It.</p>
+<p style="text-align: center; color: white;" id="alertc">Note: The CGPA Target Will Only Work If The Credit Column Is Filled.</p>
                     `
                     document.getElementById("cgpa-main").innerHTML = insb;
                     getuserdata().then((data) => {
@@ -534,7 +568,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     for (var i = 1; i < 9; i++) {
                         var newrow = table.insertRow();
                         var val = getCookie(i.toString());
-                        newrow.innerHTML = "<td>" + i.toString() + "</td><td><input type='number' min='0' value='" + val + "' /></td>";
+                        var cred = getCookie(i.toString() + 'c');
+                        newrow.innerHTML = "<td>" + i.toString() + "</td><td><input type='number' min='0' value='" + val + "' /></td><td><input type='number' min='0' value='" + cred + "' /></td>";
                     }
                     var result = calculatecgpa();
                     document.getElementById('cgpafinalgrade').innerHTML = 'CGPA: ' + result;
@@ -543,36 +578,49 @@ document.addEventListener("DOMContentLoaded", function () {
                             var inputValue = event.target.value;
                             var row = event.target.closest('tr');
                             var cellIndex = Array.from(row.cells).indexOf(event.target.closest('td'));
-                            var semesterValue = row.cells[0].textContent; 
-                            setCookie(semesterValue, inputValue);
+                            var semesterValue = row.cells[0].textContent;
+                            if (cellIndex == '1') {
+                                setCookie(semesterValue, inputValue);
+                            } else if (cellIndex == '2') {
+                                setCookie(semesterValue + 'c', inputValue);
+                            } else {
+                                console.log("Not sure where to save?");
+                            }
                             var result = calculatecgpa();
                             document.getElementById('cgpafinalgrade').innerHTML = 'CGPA: ' + result;
                         }
                     });
                     var targetobj = document.getElementById('targetvalue');
                     targetobj.addEventListener('input', function(event) {
-                        //targetcgpa*totalsem-sumofcurrent/remainingsem
                         var targetvalue = parseFloat(targetobj.value);
-                        var sgpas = [];
+                        var qpsf = 0.0;
+                        var rc = 0;
+                        var tc = 0;
+                        var semsavailable = 0;
                         for (var i = 1; i < 9; i++) {
-                            var sgpa = getCookie(i.toString());
-                            if ((sgpa == '') || (sgpa == null)) {
-
+                            var sgpa = parseFloat(getCookie(i.toString()));
+                            var cre = parseInt(getCookie(i.toString() + 'c'));
+                            if ((getCookie(i.toString()) == '') || (getCookie(i.toString()) == null)) {
+                                rc += cre;
                             } else {
-                                sgpas.push(parseFloat(sgpa));
+                                qpsf += sgpa * cre;
+                                semsavailable += 1;
                             }
+                            tc += cre;
                         }
-                        var calculate = (((targetvalue * 8) - (sgpas.reduce((a, b) => a + b, 0))) / (8 - sgpas.length)).toPrecision(parseInt(getCookie('precision')));
-                        if (sgpas.length == 8) {
+                        var qpg = targetvalue * tc;
+                        var qpe = qpg - qpsf;
+                        var calculate = (qpe / rc).toPrecision(parseInt(getCookie('precision')));
+                        if (semsavailable == 8) {
                             document.getElementById('targetresult').value = NaN;
                             document.getElementById('targettimeframe').value = NaN;
                         } else {
                             if (calculate > 10.0) {
-                                document.getElementById('targetresult').value = calculate;
-                                document.getElementById('targettimeframe').value = (8 - sgpas.length);
+                                document.getElementById('targetresult').value = NaN;
+                                document.getElementById('targettimeframe').value = (8 - semsavailable);
                             } else {
                                 document.getElementById('targetresult').value = calculate;
-                                document.getElementById('targettimeframe').value = (8 - sgpas.length);
+                                document.getElementById('targettimeframe').value = (8 - semsavailable);
                             }
                         }
                         
